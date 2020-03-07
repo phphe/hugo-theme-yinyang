@@ -1,7 +1,12 @@
 <div class="site-footer">
-  {{ range .Site.Params.socials }}
+  {{ range .Site.Params.footerMenu }}
   <div class="site-footer-item">
+    {{ if hasPrefix .link "http" }}
     <a href="{{ .link }}" target="_blank">{{ .name }}</a>
+    {{else}}
+    <a href="{{.Site.BaseURL}}{{ .link }}">{{ .name }}</a>
+    {{ end }}
+    
   </div>
   {{ end }}
   <!-- <div class="site-footer-item">

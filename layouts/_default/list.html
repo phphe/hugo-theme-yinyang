@@ -12,12 +12,16 @@
         <div id="posts-list">
           {{ range (where .Data.Pages "Type" "in" site.Params.mainSections).GroupByDate "2006" -}}
           <section>
-            <h1 class="site-date-catalog">{{ .Key }}</h1>
+            <h2 class="site-date-catalog">{{ .Key }}</h2>
 
             {{ range .Pages }}
             <div class="row posts-line">
               <div class="posts-date col-xs-2">
+                {{if hasPrefix .Site.Language.Lang "en"}}
                 <time datetime="{{ .Date.Format "2006-01-02 15:04:05 MST" }}">{{ .Date.Format "Jan 02"}}</time>
+                {{else}}
+                <time datetime="{{ .Date.Format "2006-01-02 15:04:05 MST" }}">{{ .Date.Format "01-02"}}</time>
+                {{end}}
               </div>
               <div class="posts-title col-xs-10">
                 <div class="row">
